@@ -1,0 +1,4 @@
+.profileMenuItem{
+    display: flex;
+    justify-content: space-between;
+}

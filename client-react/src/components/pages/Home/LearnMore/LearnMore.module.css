@@ -1,0 +1,55 @@
+.container{
+    width: 100vw;
+    padding: 5vh 2vw;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    background-color: var(--background);
+}
+.left{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.content h1{
+    font-size: 3em;
+    margin-bottom: 3vh;
+}
+.content h1 span{
+    position: relative;
+    font-variant: small-caps;
+    font-style: italic;
+    font-weight: 700;
+}
+.content h1 span::after{
+    content: '';
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--secondary);
+}
+.content p{
+    font-size: 1.2em;
+    margin-top: 1vh;
+}
+.button{
+    align-self: flex-end;
+    width: 15vw;
+    margin-right: 2vw;
+}
+.watermark{
+    height: 60vh;
+    opacity: .6;
+}

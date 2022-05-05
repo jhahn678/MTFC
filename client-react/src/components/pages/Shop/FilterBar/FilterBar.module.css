@@ -1,0 +1,11 @@
+.filterBar{
+    align-self: flex-end;
+    margin: 0 3vw 2vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filterSelect{
+    width: 11vw;
+    margin: 0 3vw 0 0;
+}

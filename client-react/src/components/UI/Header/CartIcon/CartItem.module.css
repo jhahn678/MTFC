@@ -1,0 +1,28 @@
+.cartItemContainer{
+    width: 90%;
+    box-sizing: border-box;
+    padding: .5em;
+    border-bottom: 1px solid #5d8e9183;
+    margin: 0 auto 1em;
+}
+.cartItemContainer h3{
+    margin-bottom: .5em;
+}
+.cartItemImg{
+    max-height: 15vh;
+    margin-bottom: .5em;
+    border-radius: 7px;
+}
+.cardItemFooter{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cartItemQuantity{
+    display: flex;
+    align-items: center;
+}
+.cartItemQuantityInput{
+    width: 5em;
+}

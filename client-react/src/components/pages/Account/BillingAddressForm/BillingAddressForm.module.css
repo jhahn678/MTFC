@@ -1,0 +1,16 @@
+.billingAddressForm{
+    margin-left: 5vw;
+    display: flex;
+    flex-direction: column;
+}
+.input{
+    margin-bottom: 1.5vh;
+}
+.image{
+    height: 70vh;
+    position: absolute;
+    opacity: .7;
+    right: 5vw;
+    top: 5vh;
+    z-index: -1;
+}

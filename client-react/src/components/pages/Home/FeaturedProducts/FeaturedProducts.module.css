@@ -1,0 +1,31 @@
+.divider{
+    height: 2vh;
+    width: 100vw;
+    background-color: var(--primary);
+    box-shadow: var(--lightShadow);
+}
+.heading{
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+    padding: 1vh 3vw;
+    width: 100vw;
+    box-sizing: border-box;
+}
+.container{
+    width: 100vw;
+    height: 50vh;
+    padding: 2vh 0;
+}
+.container::after{
+    content: 'FEATURED';
+    font-size: 18vw;
+    color: var(--text);
+    opacity: .2;
+    height: 100%;
+    width: 100vw;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    bottom: 0;
+}

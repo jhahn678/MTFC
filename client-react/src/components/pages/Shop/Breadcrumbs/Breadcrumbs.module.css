@@ -1,0 +1,16 @@
+.breadcrumbs{
+    display: flex;
+    flex-direction: row;
+    margin-left: 3vw;
+    margin-bottom: 1vh;
+}
+.link{
+    margin: 0 4px;
+    font-size: 1.1em;
+    color: var(--primary);
+    transition: .3s ease all
+}
+.link:hover{
+    color: var(--secondaryDark);
+    transform: scale(1.05)
+}

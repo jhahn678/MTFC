@@ -1,0 +1,20 @@
+.cartPage{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+}
+
+.empty{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.word{
+    margin-right: .2em;
+    transition: .3s all ease-in-out;
+    cursor: default;
+}
+.word:hover{
+    color: var(--secondary)
+}

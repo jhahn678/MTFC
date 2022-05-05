@@ -1,0 +1,4 @@
+.myOrders{
+    display: flex;
+    flex-direction: column;
+}

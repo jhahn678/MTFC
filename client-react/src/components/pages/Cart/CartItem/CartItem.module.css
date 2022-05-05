@@ -1,0 +1,35 @@
+.cartItem{
+    display: flex;
+    padding: 4vh 1vw;
+    border-top: .5px solid rgba(0,0,0,.2);
+    border-bottom: .5px solid rgba(0,0,0,.2)
+}
+.image{
+    height: 40vh;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin-right: 2vw;
+    border-radius: 7px;
+    box-shadow: var(--lightShadow);
+}
+.itemDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.itemName{
+    margin-bottom: 2vh;
+}
+.detail{
+    margin-left: 1vw;
+    margin-top: 1vh;
+}
+.quantity{
+    display: flex;
+    align-items: baseline;
+}
+.buttonGroup{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: space-between;
+}

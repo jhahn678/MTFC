@@ -1,0 +1,18 @@
+.registerModal{
+    top: 5vh;
+    left: 35vw;
+    height: auto;
+    width: 35vw;
+    min-width: 350px;
+}
+
+.registerModalHeader{
+    text-align: center;
+    color: var(--text);
+    margin: .5em 0
+}
+
+.registerForm{
+    width: 70%;
+    margin: 2vh auto 4vh;
+}

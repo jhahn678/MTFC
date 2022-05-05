@@ -1,0 +1,149 @@
+.productContainer{
+    min-height: 90vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+    padding: 5vh 0vw;
+}
+.productImage{
+    margin: 0vh 3vw 5vh 3vw;
+    max-height: 80vh;
+}
+.right{
+    margin-top: 3vh;
+}
+.productNameGroup{
+    display: flex;
+    flex-direction: column;
+}
+.productName{
+    font-size: 3em;
+    margin-bottom: 1vh;
+}
+.productDescription{
+    width: 80%;
+    margin-top: 3vh;
+    font-size: 1.2em
+}
+.optionsGroup{
+    display: flex;
+    margin: 2vh 0;
+}
+.priceGroup{
+    display: flex;
+    margin: 3vh 0 3vh 0;
+}
+.price{
+    font-weight: 700;
+    font-size: 1.4em;
+}
+.note{
+    font-size: 1em;
+    font-variant: small-caps;
+    margin-left: 2vw;
+    align-self: flex-end;
+}
+.quantityGroup{
+    display: flex;
+    align-items: center;
+}
+.quantityInput{
+    flex-grow: 1
+}
+.cartGrouping{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.addToCart{
+    margin-top: 3vh;
+    height: 7vh
+}
+
+.accordian{
+    width: 80%;
+}
+
+
+.productSlider{
+    width: 100vw;
+    height: 50vh;
+    padding: 2vh 0;
+}
+
+.failureContainer{
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.failure{
+    align-self: center;
+    font-size: 5vw;
+    position: relative;
+    transition: .5s all ease-in-out;
+}
+.failure:hover{
+    transform: scale(1.1);
+}
+.failure::after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    filter: blur(8px);
+}
+.failure::before{
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: -5%;
+    height: 4px;
+    width: 110%;
+    background-color: black;
+    filter: blur(18px);
+}
+.word{
+    transition: .5s all ease-in-out;
+}
+.word:hover{
+    color: rgb(189, 58, 58)
+}
+
+
+.imageSkeleton{
+    height: 80vh;
+    margin: 5vh 3vw;
+    transform: translateY(0);
+}
+.contentSkeleton{
+    margin: 0 3vw 3vh 1vw;
+    width: 90%;
+    transform: translateY(0);
+}
+.link{
+    color: var(--secondaryDark);
+    transition: .2s ease;
+}
+.link:hover{
+    color: orange;
+}
+
+.similarProductsHeader{
+    margin: 2vh 5vw;
+}
+.similarProducts{
+    padding-bottom: 3vh;
+}
+
+.optionInput{
+    min-width: 80px;
+    width: 10vw;
+    max-width: 150px;
+}

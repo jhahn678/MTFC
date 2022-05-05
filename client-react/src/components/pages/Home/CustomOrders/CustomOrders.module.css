@@ -1,0 +1,39 @@
+.container{
+    padding: 10vh 2vw;
+    width: 100vw;
+    box-sizing: border-box;
+    background-color: var(--background);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+.right{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.watermark{
+    height: 80%;
+    opacity: .8;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1vh 5vw;
+}
+.heading{
+    font-size: 3em;
+}
+
+.text{
+    font-size: 1.2em;
+    font-weight: 500;
+    border-top: 3px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
+    margin: 1vh 0 3vh;
+    padding: 2vh 0;
+}
+.button{
+    width: 20vw;
+}

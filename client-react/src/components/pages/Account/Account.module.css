@@ -1,0 +1,24 @@
+.accountPage{
+    min-height: 80vh;
+    box-sizing: border-box;
+    padding: 5vh 5vw 5vh 2vw;
+    position: relative;
+}
+.header{
+    margin-left: 1vw;
+    border-bottom: 2px solid var(--primary);
+    padding: 0 5vw 1vh 0;
+    margin-bottom: 5vh;
+    width: fit-content;
+}
+.message{
+    margin-top: 5vh;
+    margin-left: 2vw;
+}
+.main{
+    display: flex;
+}
+.myOrders{
+    width: 70vw;
+    margin-left: 5vw;
+}

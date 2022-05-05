@@ -1,0 +1,43 @@
+.container{
+    height: 40vh;
+    width: 100vw;
+    background-color: var(--background);
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    overflow: hidden;
+}
+.right{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.left{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.watermark{
+    height: 100%;
+    opacity: .3;
+}
+.right h1{
+    font-size: 3em;
+    margin-bottom: 1vh;
+}
+.right h3{
+    font-size: 1.2em;
+    margin-left: .2em;
+    margin-bottom: 2vh;
+}
+.emailContainer{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5em 1em;
+}
+.emailInput{
+    width: 90%;
+    font-size: 1.5em;
+    border-right: 1px solid rgba(0, 0, 0, 0.1)
+}

@@ -1,0 +1,54 @@
+.registerPage{
+    min-height: 90vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.registerContainer{
+    position: relative;
+    z-index: 5;
+    width: 35vw;
+    min-height: 400px;
+    min-width: 350px;
+    max-width: 600px;
+    padding: 5vh 5vw 5vh;
+    margin: 5vh 5vw 10vh;
+    box-sizing: border-box;
+    box-shadow: var(--lightShadow);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    overflow: hidden;
+}
+
+.header{
+    margin-bottom: 2vh;
+    align-self: center;
+}
+
+.userSvg{
+    position: absolute;
+    top: -5vh;
+    left: -5vw;
+    z-index: -2;
+    height: 80vh;
+}
+
+.padlockSvg{
+    position: absolute;
+    right: 5vw;
+    bottom: 15vh;
+    z-index: -1;
+    height: 50vh;
+    
+}
+
+.createAccount{
+    margin-top: 2vh;
+    font-size: .9em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+}

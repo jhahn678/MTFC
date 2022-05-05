@@ -1,0 +1,74 @@
+.mainCard{
+    height: 60vh;
+    width: 30vw;
+    position: absolute;
+    left: 10vw;
+    top: 15vh;
+    background-color: whitesmoke;
+}
+
+.mainContainer{
+    width: fit-content;
+    margin-top: 10%;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainText{
+    font-size: 4em;
+    font-weight: 900;
+    display: block;
+    width: fit-content;
+    /* background-color: var(--secondary);
+    box-shadow: var(--shadow); */
+    padding: 0 20px;
+    border-left: 4px solid var(--text);
+    position: relative;
+}
+
+.text1::after{
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 4px;
+    width: 40%;
+    background-color: var(--text);
+    z-index: 10;
+}
+.text2::after{
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 4px;
+    width: 60%;
+    background-color: var(--text);
+    z-index: 10;
+}
+.text3::after{
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    height: 4px;
+    width: 90%;
+    background-color: var(--text);
+    z-index: 10;
+}
+
+.mainButton{
+    display: inline-block;
+    margin-top: 1em;
+    align-self: flex-start;
+}
+
+.bg{
+   position: absolute;
+   min-height: 90vh;
+   top: 0;
+   left: 0;
+   object-fit: cover;
+   z-index: -1;
+}

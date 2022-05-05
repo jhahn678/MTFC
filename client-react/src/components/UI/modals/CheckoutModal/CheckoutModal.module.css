@@ -1,0 +1,20 @@
+.checkoutModal{
+    width: 40vw;
+    min-width: 320px;
+    padding: 5vh 3vw;
+    top: 10vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.checkoutForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonGroup{
+    margin-top: 3vh;
+    display: flex;
+    justify-content: space-between;
+}

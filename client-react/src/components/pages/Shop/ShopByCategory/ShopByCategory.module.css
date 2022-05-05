@@ -1,0 +1,31 @@
+.shopPage{
+    width: 100vw;
+    min-height: 90vh;
+    padding: 3vh 0 5vh;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.pagination{
+    margin-top: 8vh;
+    align-self: center;
+}
+.header{
+    font-size: 3.5em;
+    margin-left: 3vw;
+}
+.watermark{
+    position: absolute;
+    opacity: .2;
+    width: 70vw;
+    right: 5vw;
+    top: -30vh;
+}
+.watermark2{
+    position: absolute;
+    opacity: .2;
+    width: 90vw;
+    top: 140vh;
+    right: 5vw;
+}

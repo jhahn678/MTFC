@@ -1,0 +1,17 @@
+.loginModal{
+    top: 20vh;
+    left: 35vw;
+    height: auto;
+    width: 30vw;
+}
+.loginModalHeader{
+    text-align: center;
+    color: var(--text);
+    margin: .5em 0
+}
+.loginForm{
+    width: 70%;
+    margin: 5% auto 10%;
+    display: flex;
+    flex-direction: column;
+}

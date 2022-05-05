@@ -1,0 +1,61 @@
+.contactPage{
+    min-height: 90vh;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.emailSvg{
+    top: -4vh;
+    left: -5vw;
+    position: absolute;
+    height: 90vh;
+    transform: rotate(-30deg);
+}
+.contactForm{
+    position: relative;
+    z-index: 5;
+    width: 50vw;
+    margin: 5vh 10vw;
+    min-height: 520px;
+    min-width: 350px;
+    max-width: 600px;
+    padding: 3vh 5vw 8vh;
+    box-sizing: border-box;
+    box-shadow: var(--lightShadow);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    overflow: hidden;
+}
+.envelopeSvg{
+    height: 40vh;
+    min-height: 300px;
+    position: absolute;
+    z-index: -1;
+    top: -50px;
+    right: -50px;
+}
+.header{
+    font-size: 3em;
+    width: fit-content;
+    margin-bottom: 2vh;
+}
+.letter{
+    display: inline-block;
+}
+.space{
+    display: inline-block;
+    margin-right: .2em;
+}
+
+.input{
+    margin-bottom: 2vh;
+}
+
+.submitted{
+    position: absolute;
+    margin: 25vh auto;
+    max-width: 80%;
+}

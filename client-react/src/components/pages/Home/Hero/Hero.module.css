@@ -1,0 +1,31 @@
+.hero{
+    width: 100vw;
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroBG{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.heroBG img:nth-of-type(1){
+    object-fit: cover;
+    min-height: 100%;
+    position: relative;
+    z-index: 1;
+    opacity: .9;
+}
+.heroBG img:nth-of-type(2){
+    object-fit: cover;
+    min-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
