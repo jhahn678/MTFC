@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
 import classes from './Cart.module.css'
-import emptycart from '../../../../assets/empty-cart.svg'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
-import { styled } from '@mui/material/styles'
 import { Button, Tooltip, Divider } from '@mui/material'
 import CartDrawer from './CartDrawer'
 import CartBadge from './CartBadge';
@@ -16,14 +14,6 @@ import { useLazyGetCartQuery } from '../../../../store/services/endpoints/cartEn
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import { toast } from 'react-toastify'
-
-
-const CloseDrawer = styled(CloseIcon)({
-    marginTop: '8px',
-    marginLeft: '4px',
-    color: 'rgb(27, 27, 27)',
-    cursor: 'pointer'
-})
 
 const CartIcon = () => {
 
@@ -80,7 +70,7 @@ const CartIcon = () => {
     return (
         <>
             <Tooltip title='View cart'>
-                <IconButton aria-label='View cart' onClick={() => setCartDrawer(state => !state)}>
+                <IconButton aria-label='View cart' onClick={() => setCartDrawer(state => !state)} sx={{ marginRight: '1vw'}}>
                     <CartBadge badgeContent={cartState.quantity} color={'success'}>  
                         <ShoppingCartIcon className={classes.cartIcon} fontSize={'large'}/>
                     </CartBadge>
@@ -88,7 +78,9 @@ const CartIcon = () => {
             </Tooltip>
             <CartDrawer anchor={'right'} open={cartDrawer} onClose={() => setCartDrawer(state => !state)}>
                 <header className={classes.cartDrawerHeader}>
-                    <CloseDrawer fontSize={'large'} onClick={() => setCartDrawer(state => !state)} className={classes.cartIcon}/>
+                <IconButton onClick={() => setCartDrawer(false)} sx={{ alignSelf: 'flex-end', padding: '1vh 2vw'}}>
+                    <CloseIcon fontSize='large'/>
+                </IconButton>
                     <h2>Cart</h2>
                 </header>
                 <Divider orientation='horizontal' />
@@ -123,7 +115,8 @@ const CartIcon = () => {
                     </div> :
                     <>
                         <h2 className={classes.cartEmpty}>Your cart is empty</h2>
-                        <img src={emptycart} alt='Empty cart svg' className={classes.cartEmptySvg}/>
+                        <img src='https://storage.googleapis.com/mtfc-products/MTFC-svg/fisherman-casting.svg' 
+                            alt='fisherman casting' style={{ width: '80%', margin: '2vh auto' }}/>
                     </>
                 }
             </CartDrawer>

@@ -1,15 +1,15 @@
-import classes from '../SearchBar.module.css'
+import classes from '../SearchBar/SearchBar.module.css'
 import Paper from '@mui/material/Paper'
 import Skeleton from '@mui/material/Skeleton';
 import { useNavigate } from 'react-router-dom'
 
-const SearchResult = ({ result, loading, error, none, setSearchOpen }) => {
+const SearchResult = ({ result, loading, error, none, setParentElemOpen }) => {
 
     const navigate = useNavigate()
     
     const handleNavigate = () => {
         navigate(`/product/${result.slug}`)
-        setSearchOpen(false)
+        setParentElemOpen && setParentElemOpen(false)
     }
 
     return(
@@ -19,7 +19,7 @@ const SearchResult = ({ result, loading, error, none, setSearchOpen }) => {
                     <img src={result.image} alt={result.name} className={classes.image}/>
                     <div className='fc' style={{ padding: '5px'}}>
                         <h4>{result.name}</h4>
-                        <p>{result.description.split(' ').slice(0, 15).join(' ')}</p>
+                        <p>{result.description.split(' ').slice(0, 15).join(' ')}...</p>
                     </div>
                 </div>
             }

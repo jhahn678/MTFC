@@ -29,3 +29,11 @@
     position: absolute;
     bottom: 0;
 }
+
+@media screen and (max-width: 460px) {
+    .heading{
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 0;
+    }
+}

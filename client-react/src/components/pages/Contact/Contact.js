@@ -7,7 +7,6 @@ import TextField from '@mui/material/TextField'
 import { motion, useAnimation } from 'framer-motion'
 import MenuItem from '@mui/material/MenuItem'
 import { useEffect, useReducer } from 'react'
-import { useGetProductsQuery } from '../../../store/services/endpoints/productEndpoints'
 import { nameSchema, emailSchema, bodySchema } from '../../../helpers/joi-schemas'
 import { imgVariants, headerVariants, letterVariants, envelopeVariants, formVariants, formItemVariants, formSubmittedVariants } from './contact-animations'
 
@@ -104,7 +103,7 @@ const Contact = () => {
         return { ...state, form}
       }
     }
-    if(action.type == 'SUBMIT'){
+    if(action.type === 'SUBMIT'){
       const { form } = state;
       form.submitted = true;
       return { ...state, form }
@@ -125,7 +124,7 @@ const Contact = () => {
 
   //Handles population of secondary category select
   const categoryChangeHandler = (e) => {
-    if(e.target.value == 'Products'){
+    if(e.target.value === 'Products'){
       formDispatch({ type: 'CATEGORY', value: e.target.value })
     }else{
       formDispatch({ type: 'CATEGORY', value: e.target.value})
@@ -207,7 +206,7 @@ const Contact = () => {
           <TextField multiline required 
             label='Body' 
             value={contactForm.body.value} 
-            error={contactForm.body.message == 'Field is required'}
+            error={contactForm.body.message}
             helperText={contactForm.body.message}
             onInput={e => formDispatch({ type: 'BODY', value: e.target.value })} 
             minRows={2}

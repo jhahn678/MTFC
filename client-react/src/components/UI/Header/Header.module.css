@@ -16,22 +16,14 @@
     display: flex;
     align-items: center;
 }
-.navGroup{
-    height: 40%;
-    display: flex;
-    align-items: center;
-    list-style: none;
-}
-
-.navLink{
-    padding: 0px 2vw;
-    font-size: 1.1em;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--text);
-    transition: .2s all ease;
-}
 .logo{
     max-height: 90%;
     margin-left: 1em;
+}
+
+@media screen and (max-width: 500px){
+    .logo{
+        max-height: 70%;
+        margin-left: 0;
+    }
 }

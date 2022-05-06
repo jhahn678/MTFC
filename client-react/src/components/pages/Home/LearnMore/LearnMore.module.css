@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 2fr 3fr;
     background-color: var(--background);
+    position: relative;
 }
 .left{
     display: flex;
@@ -47,9 +48,34 @@
 .button{
     align-self: flex-end;
     width: 15vw;
+    min-width: 150px;
     margin-right: 2vw;
 }
 .watermark{
     height: 60vh;
     opacity: .6;
+}
+
+@media screen and (max-width: 925px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .content h1{
+        font-size: 2.7em;
+    }
+    .left{
+        height: 100%;
+        position: absolute;
+        opacity: .2;
+    }
+    .watermark{
+        max-height: 94%;
+        margin: 2% 0;
+    }
+    .content{
+        width: 80%;
+    }
 }

@@ -3,7 +3,6 @@
     align-self: flex-start;
 }
 .cartDrawerHeader{
-    height: 4em;
     width: 100%;
     display: flex;
     align-items: center
@@ -28,7 +27,7 @@
 .cartOrderSummary h3{
     display: flex;
     justify-content: center;
-    background-color: rgba(93, 142, 145, 0.356);
+    background-color: var(--secondary);
     width: 100%;
     padding: .7em 0;
     border-top-left-radius: 7px;
@@ -45,9 +44,10 @@
     margin-left: 1em;
 }
 .cartEmpty{
-    margin: 2em auto;
+    font-size: 2em;
+    margin: 10vh auto 0;
 }
 .cartEmptySvg{
     width: 90%;
-    margin:  0 auto;
+    margin: 5vh auto;
 }

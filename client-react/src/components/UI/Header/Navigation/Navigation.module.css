@@ -1,0 +1,28 @@
+.navGroup{
+    height: 40%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.navLink{
+    padding: 0px 2vw;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text);
+    transition: .2s all ease;
+}
+
+.svg{
+    position: absolute;
+    bottom: 5vh;
+    width: 90%;
+    margin-left: 5%;
+    opacity: .2;
+}
+
+.searchBarContainerMobile{
+    width: 95%;
+    margin: 1vh 0 1vh 5%;
+}

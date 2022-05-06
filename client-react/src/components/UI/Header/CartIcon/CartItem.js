@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import classes from './CartItem.module.css'
 import IconButton from '@mui/material/IconButton'
-import DeleteIcon from '@mui/icons-material/Delete'
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add';
 import TextField from '@mui/material/TextField'
@@ -96,7 +96,7 @@ const CartItem = ({ variant, quantity }) => {
     }
 
     const keyDownHandler = async (e) => {
-        if(e.key == 'Enter'){
+        if(e.key === 'Enter'){
             const cartLength = cartState.items.length;
             const newQty = quantityInput;
             dispatch(updateItemQuantity({
@@ -116,12 +116,12 @@ const CartItem = ({ variant, quantity }) => {
         }))
         try{
             if(cartLength > 1){
-                const res = await removeItemMutation({
+                await removeItemMutation({
                     cartId: cartState.id,
                     itemId: variant._id,
                 })
             }else{
-                const res = await deleteCartMutation(cartState.id)
+                await deleteCartMutation(cartState.id)
                 dispatch(resetCart())
             }
         }catch(err){
@@ -134,7 +134,7 @@ const CartItem = ({ variant, quantity }) => {
         <div className={classes.cartItemContainer}>
             <h3>{variant.product_name}</h3>
             <main>
-                <img className={classes.cartItemImg} src={variant.image}/>
+                <img className={classes.cartItemImg} src={variant.image} alt={variant.product_name}/>
                 <p>{`${variant.variant_type}: ${variant.display_name}`}</p>
             </main>
             <footer className={classes.cardItemFooter}>
@@ -146,7 +146,7 @@ const CartItem = ({ variant, quantity }) => {
                     <IconButton onClick={quantityAddHandler}><AddIcon/></IconButton>
                 </div>
                 <IconButton aria-label={'remove item from cart'} onClick={removeFromCartHandler}>
-                    <DeleteIcon />
+                    <RemoveShoppingCartIcon />
                 </IconButton>
             </footer>
         </div>

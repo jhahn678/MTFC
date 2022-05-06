@@ -1,16 +1,6 @@
-.mainCard{
-    height: 60vh;
-    width: 30vw;
-    position: absolute;
-    left: 10vw;
-    top: 15vh;
-    background-color: whitesmoke;
-}
-
 .mainContainer{
     width: fit-content;
-    margin-top: 10%;
-    margin-left: 15%;
+    margin: 20vh 5vw 0 15vw;
     display: flex;
     flex-direction: column;
 }
@@ -18,10 +8,7 @@
 .mainText{
     font-size: 4em;
     font-weight: 900;
-    display: block;
     width: fit-content;
-    /* background-color: var(--secondary);
-    box-shadow: var(--shadow); */
     padding: 0 20px;
     border-left: 4px solid var(--text);
     position: relative;
@@ -64,6 +51,10 @@
     align-self: flex-start;
 }
 
+.buttonGroup{
+    display: flex;
+}
+
 .bg{
    position: absolute;
    min-height: 90vh;
@@ -71,4 +62,28 @@
    left: 0;
    object-fit: cover;
    z-index: -1;
+}
+
+@media screen and (max-width: 575px) {
+    .mainContainer{
+        height: 90vh;
+        margin: 15vh auto;
+    }
+    .mainText{
+        font-size: 3em;
+    }
+    .mainButton{
+        width: 100%;
+    }
+    .buttonGroup{
+        margin-top: 3vh;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mainContainer{
+        height: 90vh;
+        margin: 15vh 5vw;
+    }
 }

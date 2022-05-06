@@ -6,7 +6,7 @@ import FilterBar from './FilterBar/FilterBar'
 import Pagination from '@mui/material/Pagination';
 import ProductGrid from './ProductGrid/ProductGrid'
 import { useEffect } from 'react'
-import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
+import { useSearchParams, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../../store/reducers/shopSlice'
 import CategoryTree from './CategoryTree/CategoryTree'
@@ -19,7 +19,6 @@ const Shop = () => {
   //Select shopSlice from redux
   const shopState = useSelector(state => state.shop)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const location = useLocation()
   const [searchParams, setSearchParams] = useSearchParams()
 

@@ -9,11 +9,12 @@
     height: 100px;
     overflow: hidden;
     margin-top: 5px;
+    padding-bottom: 1vh;
 }
 
 .image{
     margin-top: 5px;
     margin-left: 5px;
-    height: 90px;
+    height: 95px;
     width: 100px;
 }

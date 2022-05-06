@@ -5,6 +5,7 @@ import StoreIcon from '@mui/icons-material/Store';
 import CallIcon from '@mui/icons-material/Call';
 import { useEffect } from "react"
 import { useNavigate} from 'react-router-dom'
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const container = {
     initial: {
@@ -49,6 +50,7 @@ let firstRender = true;
 
 const HeroText = () =>  {
 
+    const breakpoint = useMediaQuery('(max-width: 575px)')
     const navigate = useNavigate()
     const controls = useAnimation()
 
@@ -80,7 +82,7 @@ const HeroText = () =>  {
             <motion.h1 className={`${classes.mainText} ${classes.text3}`} variants={item}>
                 For Fishermen
             </motion.h1>
-            <div style={{display: 'flex'}}>
+            <div className={classes.buttonGroup}>
                 <motion.div className={classes.mainButton} 
                     variants={button} 
                     whileTap={{ scale: 0.9 }}
@@ -91,6 +93,7 @@ const HeroText = () =>  {
                         endIcon={<StoreIcon/>} 
                         sx={{
                             fontSize: '1.5em', 
+                            width: breakpoint ? '100%' : null,
                             backgroundColor: 'var(--secondary)',
                             color: 'var(--text)',
                             '&:hover': {
@@ -107,11 +110,8 @@ const HeroText = () =>  {
                     whileHover={{ scale: 1.05 }}
                 >
                     <Button variant='contained' 
-                        onClick={() => navigate('/contact')}endIcon={<CallIcon/>} 
-                        sx={{
-                            fontSize: '1.5em', 
-                            marginLeft: '1em',
-                        }}
+                        onClick={() => navigate('/contact')} endIcon={<CallIcon/>} 
+                        sx={{ fontSize: '1.5em', width: breakpoint ? '100%' : null, marginLeft: breakpoint ? 0 : '2vw' }}
                     >
                         Contact us
                     </Button>

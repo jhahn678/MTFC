@@ -82,7 +82,12 @@ const CustomOrders = () => {
                 </motion.span>
             </div>
             <div className={classes.right}>
-                <motion.img variants={imgVariants} viewport={{once: true}} src='https://storage.googleapis.com/mtfc-products/MTFC-svg/beadhead-pheasant-tail.svg' alt='beadhead pheasant tail svg' className={classes.watermark}/>
+                <motion.img variants={imgVariants} 
+                    viewport={{once: true}} 
+                    src='https://storage.googleapis.com/mtfc-products/MTFC-svg/beadhead-pheasant-tail.svg' 
+                    alt='beadhead pheasant tail svg' 
+                    className={classes.watermark}
+                />
             </div>
         </motion.main>
         <div className='divider'/>
