@@ -13,6 +13,7 @@ router.post('/webhook', express.raw({type: 'application/json'}), asyncHandler(as
     let event;
     try{
         event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET)
+        console.log(event)
     }catch(err){
         res.status(400).send(`Stripe webhook error: ${err.message}`)
     }

@@ -46,10 +46,10 @@ const OrderComplete = () => {
 
     useEffect(() => {
         if(cartState.cartId){
-            deleteCartMutation(cartState.cartId)
+            deleteCartMutation(cartState.id)
             dispatch(resetCart())
         }
-    },[cartState.cartId])
+    },[cartState.id])
 
     return (
         <Page className={classes.orderCompletePage}>
