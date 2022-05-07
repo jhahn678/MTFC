@@ -14,6 +14,7 @@ import OrderSuccess from './components/pages/OrderComplete/OrderComplete'
 import Account from './components/pages/Account/Account'
 import Login from './components/pages/Login/Login'
 import Register from './components/pages/Register/Register'
+import NotFound from './components/pages/NotFound/NotFound'
 
 const AppRoutes = () => {
 
@@ -36,6 +37,7 @@ const AppRoutes = () => {
           <Route exact path='/contact' element={<Contact/>}/>
           <Route exact path='/login' element={<Login/>}/>
           <Route exact path='/register' element={<Register/>}/>
+          <Route path='*' element={<NotFound/>}/>
       </Routes>
     </AnimatePresence>
   )
