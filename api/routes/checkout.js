@@ -16,64 +16,61 @@ router.post('/webhook', express.raw({type: 'application/json'}), asyncHandler(as
     }catch(err){
         return res.status(400).send(`Stripe webhook error: ${err.message}`)
     }
-    switch(event.type){
-        case 'checkout.session.completed':
-            console.log('checkout session completed')
-            const completedSession = event.data.object;
-            const session = await stripe.checkout.sessions.retrieve(completedSession.id, { expand: ['shipping_rate'] })
-            const lineItems = await stripe.checkout.sessions.listLineItems(completedSession.id, { expand: ['data.price.product'] })
-            const order = new Order({
-                customer: {
-                    user_id: session.metadata.user_id || null,
-                    name: session.customer_details.name,
-                    email: session.customer_details.email,
-                    phone: session.customer_details.phone,
-                    address: session.customer_details.address
-                },
-                total: {
-                    amount_subtotal: session.amount_subtotal,
-                    amount_discount: session.total_details.amount_discount,
-                    amount_shipping: session.total_details.amount_shipping,
-                    amount_tax: session.total_details.amount_tax,
-                    amount_total: session.amount_total
-                },
-                stripe: {
-                    checkout_session: session.id,
-                    payment_intent: session.payment_intent,
-                    payment_status: session.payment_status,
-                    shipping_rate: session.shipping_rate.id
-                },
-                products: lineItems.data.map(item => ({
-                    variant_id: item.price.product.metadata.variant_id,
-                    product_id: item.price.product.metadata.product_id,
-                    name: item.price.product.name,
-                    image: item.price.product.metadata.image,
-                    description: item.price.product.description,
-                    unit_price: item.price.unit_amount,
-                    total_price: item.amount_total,
-                    quantity: item.quantity
-                })),
-                shipping: {
-                    method: session.shipping_rate.display_name,
-                    delivery_estimate: `${session.shipping_rate.delivery_estimate.minimum.value}-${session.shipping_rate.delivery_estimate.maximum.value} business days`,
-                    name: session.shipping.name,
-                    address: session.shipping.address
-                }
+    if(event.type === 'checkout.session.completed'){
+        console.log('checkout session completed')
+        const completedSession = event.data.object;
+        const session = await stripe.checkout.sessions.retrieve(completedSession.id, { expand: ['shipping_rate'] })
+        const lineItems = await stripe.checkout.sessions.listLineItems(completedSession.id, { expand: ['data.price.product'] })
+        const order = new Order({
+            customer: {
+                user_id: session.metadata.user_id || null,
+                name: session.customer_details.name,
+                email: session.customer_details.email,
+                phone: session.customer_details.phone,
+                address: session.customer_details.address
+            },
+            total: {
+                amount_subtotal: session.amount_subtotal,
+                amount_discount: session.total_details.amount_discount,
+                amount_shipping: session.total_details.amount_shipping,
+                amount_tax: session.total_details.amount_tax,
+                amount_total: session.amount_total
+            },
+            stripe: {
+                checkout_session: session.id,
+                payment_intent: session.payment_intent,
+                payment_status: session.payment_status,
+                shipping_rate: session.shipping_rate.id
+            },
+            products: lineItems.data.map(item => ({
+                variant_id: item.price.product.metadata.variant_id,
+                product_id: item.price.product.metadata.product_id,
+                name: item.price.product.name,
+                image: item.price.product.metadata.image,
+                description: item.price.product.description,
+                unit_price: item.price.unit_amount,
+                total_price: item.amount_total,
+                quantity: item.quantity
+            })),
+            shipping: {
+                method: session.shipping_rate.display_name,
+                delivery_estimate: `${session.shipping_rate.delivery_estimate.minimum.value}-${session.shipping_rate.delivery_estimate.maximum.value} business days`,
+                name: session.shipping.name,
+                address: session.shipping.address
+            }
+        })
+        const newOrder = await order.save()
+        for(let product of newOrder.products){
+            const variant = await Variant.findById(product.variant_id)
+            const updatedStock = variant.stock - product.quantity;
+            await Variant.findByIdAndUpdate(product.variant_id, { $set: { stock: updatedStock }})
+        }
+        if(session.metadata.user_id) {
+            await User.findByIdAndUpdate(session.metadata.user_id, {
+                $push: { orders: newOrder._id }
             })
-            const newOrder = await order.save()
-            for(let product of newOrder.products){
-                const variant = await Variant.findById(product.variant_id)
-                const updatedStock = variant.stock - product.quantity;
-                await Variant.findByIdAndUpdate(product.variant_id, { $set: { stock: updatedStock }})
-            }
-            if(session.metadata.user_id) {
-                const user = await User.findByIdAndUpdate(session.metadata.user_id, {
-                    $push: { orders: newOrder._id }
-                })
-            }
-            break;
-        default:
-            return;
+        }
+        return res.status(200).json({ message: 'Order proccessed successfully'})
     }
 }))
 
