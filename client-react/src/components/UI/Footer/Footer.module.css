@@ -1,7 +1,10 @@
 .footer{
     display: grid;
+    min-height: 35vh;
     grid-template-columns: 3fr 4fr 5fr;
     background-color: var(--background);
+    position: relative;
+    z-index: 10;
 }
 .footerLeft{
     display: flex;

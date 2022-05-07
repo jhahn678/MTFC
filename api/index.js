@@ -17,7 +17,7 @@ app.use(helmet());
 
 require('dotenv').config({path: './config/config.env'})
 
-require('./config/mongodb')();
+require('./config/mongodb')()
 
 const authRoutes = require('./routes/auth')
 const productRoutes = require('./routes/products')
