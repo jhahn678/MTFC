@@ -76,12 +76,6 @@ const Login = () => {
                         <h1 className={classes.header}>Sign in</h1>
                         <Divider sx={{ orientation: 'horizontal', width: '80%', margin: 'auto', marginBottom: '4vh' }}/>
                         <LoginForm handleCartMerge={handleCartMerge} onRedirect={handleRedirect}/>
-                        <CartMergeModal 
-                            viewCartMerge={viewCartMerge} 
-                            storedCart={storedCart} 
-                            setStoredCart={setStoredCart}
-                            onDismiss={handleRedirect}
-                        />
                         <p className={classes.createAccount}>Dont have an account? 
                             <Button onClick={() => navigate('/register')}>Register</Button>
                         </p>
@@ -99,6 +93,12 @@ const Login = () => {
                 variants={padlockSvgVariants}
                 initial='initial'
                 animate='animate'
+            />
+            <CartMergeModal 
+                viewCartMerge={viewCartMerge} 
+                storedCart={storedCart} 
+                setStoredCart={setStoredCart}
+                onDismiss={handleRedirect}
             />
         </Page>
     )

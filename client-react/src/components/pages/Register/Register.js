@@ -48,12 +48,6 @@ const Register = () => {
             <h1 className={classes.header}>Sign up</h1>
             <Divider sx={{ orientation: 'horizontal', width: '80%', margin: 'auto', marginBottom: '4vh' }}/>
             <RegisterForm className={classes.registerForm} handleCartMerge={handleCartMerge} onRedirect={handleRedirect}/>
-            <CartMergeModal 
-              viewCartMerge={viewCartMerge} 
-              storedCart={storedCart} 
-              setStoredCart={setStoredCart}
-              onDismiss={handleRedirect}
-            />
           </> 
         }
       </motion.div>
@@ -69,6 +63,12 @@ const Register = () => {
             initial='initial'
             animate='animate'
         />
+        <CartMergeModal 
+            viewCartMerge={viewCartMerge} 
+            storedCart={storedCart} 
+            setStoredCart={setStoredCart}
+            onDismiss={handleRedirect}
+          />
     </Page>
   )
 }
