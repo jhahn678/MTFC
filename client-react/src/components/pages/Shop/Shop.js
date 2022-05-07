@@ -53,6 +53,7 @@ const Shop = () => {
   return(
     <Page className={classes.shopPage}>
       <img src='https://storage.googleapis.com/mtfc-products/MTFC-svg/nymp.svg' alt='nymph vector' className={classes.watermark}/>
+      <img src='https://storage.googleapis.com/mtfc-products/MTFC-svg/softhackle-pheasant-tail.svg' alt='nymph vector' className={classes.watermark2}/>
       <Breadcrumbs />
       <h1 className={classes.header}>Browse All</h1>
       
