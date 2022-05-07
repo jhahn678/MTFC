@@ -13,7 +13,6 @@ router.post('/webhook', express.raw({type: 'application/json'}), asyncHandler(as
     let event;
     try{
         event = stripe.webhooks.constructEvent(req.body, signature, process.env.STRIPE_WEBHOOK_SECRET)
-        console.log(event)
     }catch(err){
         res.status(400).send(`Stripe webhook error: ${err.message}`)
     }
@@ -102,7 +101,7 @@ router.post('/create-stripe-session', asyncHandler(async (req, res) => {
         }
     }))
     const stripeSessionConfig = {
-        success_url: `${process.env.BASE_URL}/checkout/success`,
+        success_url: `${process.env.BASE_URL}/checkout/success?redirect=true`,
         cancel_url: `${process.env.BASE_URL}/cart?order_cancelled`,
         line_items: formattedCartItems,
         payment_method_types: ['card'],
