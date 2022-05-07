@@ -66,8 +66,8 @@ router.post('/patch-variants', asyncHandler(async(req, res) => {
     }
     const noProductName = await Variant.find({ product_name: { $exists: false }})
     for(let product of noProductName){
-        const variant = await Variant.findById({ _id: prod._id }).populate('product')
-        await Variant.findByIdAndUpdate(prod._id, { $set: { product_name: variant.product.name }})
+        const variant = await Variant.findById({ _id: product._id }).populate('product')
+        await Variant.findByIdAndUpdate(product._id, { $set: { product_name: variant.product.name }})
     }
     res.status(200).json({ message: 'products updated'})
 }))
