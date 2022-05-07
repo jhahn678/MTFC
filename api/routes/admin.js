@@ -38,3 +38,5 @@ router.post('/auth/create-admin', verifyAdmin, asyncHandler(async (req, res) => 
     const newAdmin = await admin.save()
     res.status(200).json({ admin: newAdmin, message: 'New admin created'})
 }))
+
+module.exports = router;

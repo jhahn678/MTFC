@@ -18,7 +18,6 @@ app.use(helmet());
 require('dotenv').config({path: './config/config.env'})
 
 require('./config/mongodb')();
-require('./seeds/seedProducts')();   ///////Seeding for development
 
 const authRoutes = require('./routes/auth')
 const productRoutes = require('./routes/products')
