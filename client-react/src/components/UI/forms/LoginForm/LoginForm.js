@@ -96,7 +96,7 @@ const LoginForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
                 toast.error('Could not authenticate')
             }
         }else{
-            console.log(res.error)
+            console.log(res)
             toast.error('Cannot connect to Google')
         }
     }
