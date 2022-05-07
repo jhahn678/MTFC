@@ -45,7 +45,7 @@ const OrderComplete = () => {
     const [ deleteCartMutation ] = useDeleteCartMutation()
 
     useEffect(() => {
-        if(cartState.cartId){
+        if(cartState.id){
             deleteCartMutation(cartState.id)
             dispatch(resetCart())
         }
