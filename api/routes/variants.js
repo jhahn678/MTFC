@@ -5,9 +5,10 @@ const Product = require('../models/product')
 const Category = require('../models/category')
 const asyncHandler = require('express-async-handler')
 const AppError = require('../utils/AppError')
+const { verifyAdmin } = require('../middleware/auth')
 
 //Create a single variant
-router.post('/', asyncHandler(async(req, res) => {
+router.post('/', verifyAdmin, asyncHandler(async(req, res) => {
     const { product, variant_type, display_name, image, price, stock, meta } = req.body;
     const variant = new Variant({ product, variant_type, display_name, image, price, stock, meta })
     const newVariant = await variant.save()
@@ -24,7 +25,7 @@ router.post('/', asyncHandler(async(req, res) => {
 
 ////@DEVELOPMENT ENDPOINT
 //Generate variants for a single product or array of products
-router.post('/generate-variants-for-product', asyncHandler(async(req, res) => {
+router.post('/generate-variants-for-product', verifyAdmin, asyncHandler(async(req, res) => {
     const { _id, variant_type, display_names, price } = req.body;
     if(Array.isArray(_id)){
         for(let id of _id){
@@ -58,7 +59,7 @@ router.post('/generate-variants-for-product', asyncHandler(async(req, res) => {
 }))
 
 //Delete a variant
-router.delete('/:id', asyncHandler(async(req, res) => {
+router.delete('/:id', verifyAdmin, asyncHandler(async(req, res) => {
     const { id } = req.params;
     const variant = await Variant.findByIdAndDelete(id)
     const product = await Product.findByIdAndUpdate(variant.product, { $pull: { variants: id }}, { new: true }).populate('variants')
@@ -86,7 +87,7 @@ router.get('/product/:id', asyncHandler(async(req, res) => {
 }))
 
 //Update variant stock
-router.patch('/:id/stock', asyncHandler(async(req, res) => {
+router.patch('/:id/stock', verifyAdmin, asyncHandler(async(req, res) => {
     const { id } = req.params;
     const { stock } = req.body;
     await Variant.findByIdAndUpdate(id, { stock: stock })

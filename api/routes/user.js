@@ -3,9 +3,9 @@ const router = express.Router()
 const User = require('../models/user')
 const AppError = require('../utils/AppError')
 const asyncHandler = require('express-async-handler')
-const { verifyToken } = require('../middleware/auth')
+const { verifyToken, verifyAdmin } = require('../middleware/auth')
 
-router.get('/', asyncHandler(async(req, res) => {
+router.get('/', verifyAdmin, asyncHandler(async(req, res) => {
     const allUsers = await User.find()
     res.status(200).json(allUsers)
 }))

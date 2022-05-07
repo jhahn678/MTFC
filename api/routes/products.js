@@ -4,6 +4,7 @@ const Category = require('../models/category')
 const asyncHandler = require('express-async-handler')
 const AppError = require('../utils/AppError')
 const Variant = require('../models/variant')
+const { verifyAdmin } = require('../middleware/auth')
 
 router.get('/', asyncHandler(async (req, res) => {
     const { page=1, limit=15, sort: sortMethod } = req.query;
@@ -55,11 +56,11 @@ router.get('/:slug', asyncHandler(async (req, res) => {
     res.status(200).json(product)
 }))
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', verifyAdmin, async (req, res) => {
     //admin edit product
 })
 
-router.delete('/:id', asyncHandler(async (req, res) => {
+router.delete('/:id', verifyAdmin, asyncHandler(async (req, res) => {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id)
     for(let v of product.variants){
@@ -68,7 +69,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     res.status(204).json({message: 'Product and variants deleted'})
 }))
 
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', verifyAdmin, asyncHandler(async (req, res) => {
     const { name, category: categoryName, price, description, images, tags } = req.body
     const category = await Category.findOne({ slug: categoryName })
     if(!category) throw new AppError('Invalid category name: Must match category slug in database', 400)

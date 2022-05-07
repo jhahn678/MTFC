@@ -4,6 +4,7 @@ const Category = require('../models/category')
 const asyncHandler = require('express-async-handler')
 const AppError = require('../utils/AppError')
 const createSlug = require('../utils/createSlug')
+const { verifyAdmin } = require('../middleware/auth')
 
 router.get('/', asyncHandler(async(req, res) => {
     const categories = await Category.find()
@@ -26,7 +27,7 @@ router.get('/:slug', asyncHandler(async(req, res) => {
 }))
 
 
-router.post('/', asyncHandler(async(req, res) => {
+router.post('/', verifyAdmin, asyncHandler(async(req, res) => {
     const { name, parent } = req.body;
     let parentCategory = null;
     let ancestors = [];
@@ -50,7 +51,7 @@ router.post('/', asyncHandler(async(req, res) => {
     res.status(200).json(category)
 }))
 
-router.patch('/:id', asyncHandler(async(req, res) => {
+router.patch('/:id', verifyAdmin, asyncHandler(async(req, res) => {
     const { name } = req.body;
     const { id } = req.params;
     await Category.findByIdAndUpdate(id, { name: name }, { new: true })
