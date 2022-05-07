@@ -58,6 +58,20 @@ router.post('/generate-variants-for-product', verifyAdmin, asyncHandler(async(re
     }
 }))
 
+router.post('/patch-variants', asyncHandler(async(req, res) => {
+    const noProductSlug = await Variant.find({ product_slug: { $exists: false }})
+    for(let prod of noProductSlug){
+        const variant = await Variant.findById({ _id: prod._id }).populate('product')
+        await Variant.findByIdAndUpdate(prod._id, { $set: { product_slug: variant.product.slug }})
+    }
+    const noProductName = await Variant.find({ product_name: { $exists: false }})
+    for(let product of noProductName){
+        const variant = await Variant.findById({ _id: prod._id }).populate('product')
+        await Variant.findByIdAndUpdate(prod._id, { $set: { product_name: variant.product.name }})
+    }
+    res.status(200).json({ message: 'products updated'})
+}))
+
 //Delete a variant
 router.delete('/:id', verifyAdmin, asyncHandler(async(req, res) => {
     const { id } = req.params;
