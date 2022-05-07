@@ -3,6 +3,7 @@ import { useGetUserOrdersQuery } from '../../../../store/services/endpoints/user
 import { useSelector } from 'react-redux'
 import Order from '../Order/Order'
 import OrderGrid from '../OrderGrid/OrderGrid'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const MyOrders = ({ className, showTitle=true }) => {
 
@@ -19,6 +20,8 @@ const MyOrders = ({ className, showTitle=true }) => {
     return (
         <div className={`${classes.myOrders} ${className}`}>
              { showTitle && <h2>My orders</h2>}
+             { userOrdersError && <h3 style={{ marginTop: '5vh', alignSelf: 'center'}}>Error loading your orders</h3>}
+             { userOrdersLoading && <CircularProgress size={50}/>}
              { userOrdersSuccess && userOrders.orders.length === 0  && <h3 style={{ marginTop: '5vh', alignSelf: 'center'}}>You have no orders yet</h3> }
              { userOrdersSuccess && userOrders.orders.length > 0 &&
                  <OrderGrid>

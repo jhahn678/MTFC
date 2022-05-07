@@ -5,7 +5,7 @@ import BillingAddressForm from './BillingAddressForm/BillingAddressForm'
 import AccountDetailsForm from './AccountDetailsForm/AccountDetailsForm'
 import MyOrders from '../Orders/MyOrders/MyOrders'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigatem, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useGetUserQuery } from '../../../store/services/endpoints/userEndpoints'
 import { logout } from '../../../store/reducers/userSlice'
@@ -23,6 +23,7 @@ const Account = () => {
 
     //config state and navigation
     const navigate = useNavigate()
+    const location = useLocation()
     const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
     
@@ -75,7 +76,7 @@ const Account = () => {
             {!user.isAuthenticated && 
                 <div className={classes.message}>
                     <h3>Sign in to view your account</h3>
-                    <Button onClick={() => navigate('/login')} endIcon={<LoginIcon/>}>Sign in</Button>
+                    <Button onClick={() => navigate('/login', { state: { redirect: location.pathname }})} endIcon={<LoginIcon/>}>Sign in</Button>
                 </div>
             }
             {user.isAuthenticated && isError &&

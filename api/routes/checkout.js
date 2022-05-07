@@ -70,7 +70,10 @@ router.post('/webhook', express.raw({type: 'application/json'}), asyncHandler(as
                 $push: { orders: newOrder._id }
             })
         }
-        return res.status(200).json({ message: 'Order proccessed successfully'})
+        return res.status(200).json({ 
+            message: 'Order proccessed successfully',
+            order: newOrder
+        })
     }
 }))
 
