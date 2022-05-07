@@ -56,7 +56,7 @@ export const cartEndpoints = api.injectEndpoints({
         }),
         mergeItems: build.mutation({
             query: ({ cartId, ...items}) => ({
-                url: `cart/${cartId}/merge-items`,
+                url: `cart/${cartId}/merge-carts`,
                 method: 'PATCH',
                 body: items
             })

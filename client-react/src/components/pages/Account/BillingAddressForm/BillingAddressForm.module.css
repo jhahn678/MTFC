@@ -14,3 +14,12 @@
     top: 5vh;
     z-index: -1;
 }
+
+@media screen and (max-width: 900px) {
+    .billingAddressForm{
+        margin-top: 3vh;
+        margin-left: 2vw;
+        max-width: 500px;
+        align-self: center;
+    }
+}

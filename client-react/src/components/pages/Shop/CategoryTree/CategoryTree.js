@@ -5,7 +5,7 @@ import CategoryLeaf from './CategoryLeaf'
 import List from '@mui/material/List'
 
 
-const CategoryTree = ({ selected }) => {
+const CategoryTree = ({ selected, styles }) => {
 
     const { data: categories, isSuccess } = useGetAllCategoriesQuery()
     const [parentNodes, setParentNodes] = useState([])
@@ -15,7 +15,7 @@ const CategoryTree = ({ selected }) => {
     },[categories])
 
     return (
-        <List sx={{ width: '20vw', marginLeft: '2vw', minHeight: '50vh'}}>
+        <List sx={ styles ? styles : { width: '20vw', marginLeft: '2vw', minHeight: '50vh'}}>
             {
                 parentNodes.map(p => (
                     p.has_children ? 

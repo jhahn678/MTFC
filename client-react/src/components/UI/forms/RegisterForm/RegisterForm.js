@@ -86,7 +86,7 @@ const formReducer = (state, action) => {
 }
 
 
-const RegisterForm = ({ className, onDismiss, viewCartMerge }) => {
+const RegisterForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
 
     const dispatch = useDispatch()
     const cartState = useSelector((state) => state.cart)
@@ -142,7 +142,7 @@ const RegisterForm = ({ className, onDismiss, viewCartMerge }) => {
         //If theres a stored cart and a local cart
         if(cart && cartId){
             setCartUserMutation({ userId, cartId })
-            viewCartMerge(cart)
+            handleCartMerge(cart)
         }
         //If theres only a stored cart
         else if(cart){
@@ -159,10 +159,12 @@ const RegisterForm = ({ className, onDismiss, viewCartMerge }) => {
             dispatch(setCart({ items: transformedItems, cartId: cart._id }))
             //If server modified stored cart due to items being no longer available
             if(cartModified) toast.info('One or more items previously in your cart are no longer available, and were removed.', { postition: 'top-right', delay: 1000 })
+            onRedirect && onRedirect()
         }
         //If theres only a local cart
         else if(cartId){
             setCartUserMutation({ cartId, userId })
+            onRedirect && onRedirect()
         }
     }
 

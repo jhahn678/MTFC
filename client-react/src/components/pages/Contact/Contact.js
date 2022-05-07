@@ -170,6 +170,7 @@ const Contact = () => {
             error={contactForm.fullName.touched && !contactForm.fullName.valid}
             helperText={contactForm.fullName.message}
             value={contactForm.fullName.value} 
+            InputProps={{ sx: { backgroundColor: 'var(--lightTransparent)'}}}
             onInput={e => formDispatch({ type: 'FULLNAME', value: e.target.value})} 
           />
         </motion.div>
@@ -178,6 +179,7 @@ const Contact = () => {
             error={contactForm.email.touched && !contactForm.email.valid}
             helperText={contactForm.email.message}
             value={contactForm.email.value} 
+            InputProps={{ sx: { backgroundColor: 'var(--lightTransparent)'}}}
             onInput={e => formDispatch({ type: 'EMAIL', value: e.target.value })}
           />
         </motion.div>

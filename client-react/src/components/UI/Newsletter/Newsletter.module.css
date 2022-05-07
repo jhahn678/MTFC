@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: 2fr 3fr;
     overflow: hidden;
+    position: relative;
 }
 .right{
     display: flex;
@@ -12,6 +13,7 @@
     flex-direction: column;
 }
 .left{
+    height: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -40,4 +42,25 @@
     width: 90%;
     font-size: 1.5em;
     border-right: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+@media screen and (max-width: 925px) {
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .left{
+        display: none;
+    }
+    .right{
+        padding: 2vh 5vw;
+    }
+    .right h1{
+        font-size: 2.5em;
+    }
+    .emailContainer{
+        margin-top: 2vh;
+        width: 90%;
+    }
 }

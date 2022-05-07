@@ -15,8 +15,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const Account = () => {
+
+    const breakpoint = useMediaQuery('(max-width: 900px)')
 
     //config state and navigation
     const navigate = useNavigate()
@@ -24,7 +27,7 @@ const Account = () => {
     const dispatch = useDispatch()
     
     //Query for logged in user account details
-    const { data, isSuccess, isLoading, isError, refetch: refetchUserDetails } = useGetUserQuery(user.userId)
+    const { data, isSuccess, isError, refetch: refetchUserDetails } = useGetUserQuery(user.userId)
 
     //Logout function 
     const handleLogout = () => {
@@ -50,7 +53,14 @@ const Account = () => {
             <h1 className={classes.header}>My account</h1>
             {user.isAuthenticated && isSuccess && 
                 <main className={classes.main}>
-                    <Tabs value={tabValue} orientation='vertical' onChange={(e, v) => setTabValue(v)} variant='standard' sx={{ width: 'fit-content' }}>
+                    <Tabs value={tabValue} 
+                        orientation={breakpoint ? 'horizontal' : 'vertical'} 
+                        onChange={(e, v) => setTabValue(v)} 
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile 
+                        sx={{ width: 'fit-content', maxWidth: '90vw' }}
+                    >
                         <Tab value={0} label='Account Details'/>
                         <Tab value={1} label='Shipping Address'/>
                         <Tab value={2} label='Billing Address'/>

@@ -24,12 +24,14 @@ import { toast } from 'react-toastify'
 import { useAddItemMutation, useNewCartMutation } from '../../../store/services/endpoints/cartEndpoints'
 import Breadcrumbs from '../Shop/Breadcrumbs/Breadcrumbs'
 import ProductSlider from '../../UI/ProductSlider/ProductSlider'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const Product = () => {
 
   const { slug } = useParams()
 
   const navigate = useNavigate()
+  const breakpoint = useMediaQuery('(max-width: 700px)')
 
   const dispatch = useDispatch()
   const cartState = useSelector((state) => state.cart)
@@ -48,7 +50,11 @@ const Product = () => {
     if(product){
       if(product.price.min_price === product.price.max_price) setPrice(`$${product.price.min_price}`)
       if(product.price.min_price !== product.price.max_price) setPrice(`$${product.price.min_price} - $${product.price.max_price}`)
-      if(product.variants.length === 1) setSelectedVariantId(product.variants[0]._id)
+      if(product.variants.length === 1) {
+        setSelectedVariantId(product.variants[0]._id)
+      }else{
+        setSelectedVariantId('')
+      }
     }
   },[product])
 
@@ -181,13 +187,13 @@ const Product = () => {
                 />
                 <IconButton onClick={handleQuantityPlus}><AddIcon/></IconButton>
               </div>
-              <Button variant='contained' size='large' 
+              <Button variant='contained' size='large' sx={{ minWidth: '160px' }} 
                 className={classes.addToCart} onClick={addToCartHandler}
                 disabled={!selectedVariant || (quantity > quantityInStock)}
               >Add to cart</Button>
             </div>
             
-            <Accordion sx={{ marginTop: '5vh', width: '80%'}}>
+            <Accordion sx={{ marginTop: '5vh', width: breakpoint ? '95%' : '80%'}}>
               <AccordionSummary expandIcon={<ArrowForwardIosSharpIcon style={{transform: 'rotate(90deg)'}}/>}>Shipping Information</AccordionSummary>
               <AccordionDetails>
                 Shipping is currently available in all 50 states of the United States, 
@@ -196,14 +202,14 @@ const Product = () => {
               </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{ marginTop: '1vh', width: '80%'}}>
+            <Accordion sx={{ marginTop: '1vh', width: breakpoint ? '95%' : '80%'}}>
               <AccordionSummary expandIcon={<ArrowForwardIosSharpIcon style={{transform: 'rotate(90deg)'}}/>}>Discounts</AccordionSummary>
               <AccordionDetails>
                 There are no discounts currently available for this product.
               </AccordionDetails>
             </Accordion>
 
-            <Accordion sx={{ marginTop: '1vh', width: '80%'}}>
+            <Accordion sx={{ marginTop: '1vh', width: breakpoint ? '95%' : '80%'}}>
               <AccordionSummary expandIcon={<ArrowForwardIosSharpIcon style={{transform: 'rotate(90deg)'}}/>}>Quality Guarentee</AccordionSummary>
               <AccordionDetails>
                 Mountain Trout Fly Co. believes strongly in the quality of the products we sell. We offer

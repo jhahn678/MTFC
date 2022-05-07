@@ -110,7 +110,7 @@ const ProfileIcon = () => {
 
                 }          
             </Menu>
-            <LoginModal viewLogin={viewLogin} viewCartMerge={handleCartMerge} onDismiss={loginViewHandler}/>
+            <LoginModal viewLogin={viewLogin} handleCartMerge={handleCartMerge} onDismiss={loginViewHandler}/>
             <RegisterModal viewRegister={viewRegister} onDismiss={registerViewHandler}/>
             <CartMergeModal 
                 viewCartMerge={viewCartMerge} 

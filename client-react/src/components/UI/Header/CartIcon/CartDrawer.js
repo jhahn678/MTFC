@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 
 const CartDrawer = styled(Drawer)(() => ({
     '& .MuiDrawer-paperAnchorRight': {
-        width: '80vw',
+        width: '100vw',
         maxWidth: '450px'
     }
 }));

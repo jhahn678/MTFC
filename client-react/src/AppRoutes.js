@@ -34,8 +34,8 @@ const AppRoutes = () => {
           <Route exact path='/blog' element={<Blog/>}/>
           <Route exact path='/about' element={<About/>}/>
           <Route exact path='/contact' element={<Contact/>}/>
-          <Route exact path='/login' element={!user ? <Login/> : <Account/>}/>
-          <Route exact path='/register' element={!user ? <Register/> : <Account/>}/>
+          <Route exact path='/login' element={<Login/>}/>
+          <Route exact path='/register' element={<Register/>}/>
       </Routes>
     </AnimatePresence>
   )

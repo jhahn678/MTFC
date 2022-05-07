@@ -28,3 +28,10 @@
     top: 140vh;
     right: 5vw;
 }
+
+@media screen and (max-width: 500px) {
+    .header{
+        font-size: 3em;
+    }
+    
+}

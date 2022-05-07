@@ -49,16 +49,20 @@ const CartItem = ({ variant, quantity }) => {
             <img src={variant.image} alt={variant.product_name} className={classes.image}/>
             <section className={classes.itemDetails}>
                 <h2 className={classes.itemName}>{variant.product_name}</h2>
-                <p>{`${variant.variant_type} ${variant.display_name}`}</p>
-                <p className={classes.detail}>Price: ${ variant.price }</p>
-                <div className={classes.quantity}>
-                    <p className={classes.detail}>Quantity: </p>
-                    <TextField value={quantityInput} type='number' size='small' sx={{ width: '5vw', marginLeft: '1vw' }}
-                        onChange={(e) => setQuantityInput(e.target.value)}
-                        onBlur={handleQuantityBlur}
-                    />
+                <div className={classes.detailsGroup}>
+                    <p className={classes.detail}>{`${variant.variant_type} ${variant.display_name}`}</p>
+                    <p className={classes.detail}>Price: ${ variant.price }</p>
                 </div>
-                <h4 className={classes.detail}>Total: ${(variant.price * quantityValue).toFixed(2)}</h4>
+                <div className={classes.detailsGroup}>
+                    <div className={classes.quantity}>
+                        <p className={classes.detail}>Quantity: </p>
+                        <TextField value={quantityInput} type='number' size='small' sx={{ width: '5vw', marginLeft: '1vw', minWidth: '40px' }}
+                            onChange={(e) => setQuantityInput(e.target.value)}
+                            onBlur={handleQuantityBlur}
+                        />
+                    </div>
+                    <h4 className={classes.detail}>Total: ${(variant.price * quantityValue).toFixed(2)}</h4>
+                </div>
                 <div className={classes.buttonGroup}>
                     <Button endIcon={<DeleteOutlineIcon/>} onClick={handleRemoveItem}>Remove</Button>
                     <Button endIcon={<ArrowForwardIcon/>} onClick={() => navigate(`/product/${variant.product_slug}`)}>View</Button>

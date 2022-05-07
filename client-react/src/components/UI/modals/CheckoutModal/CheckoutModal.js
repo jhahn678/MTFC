@@ -5,6 +5,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@mui/material/Button'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
+
+////////NOT IN USE////////////
+
 const CheckoutModal = ({ stripeToken, viewCheckout, onDismiss }) => {
 
     const handleSubmit = (e) => {

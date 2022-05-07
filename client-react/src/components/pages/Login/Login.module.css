@@ -8,8 +8,7 @@
 .loginContainer{
     position: relative;
     z-index: 5;
-    width: 35vw;
-    min-height: 400px;
+    width: 40vw;
     min-width: 350px;
     max-width: 600px;
     padding: 5vh 5vw 5vh;
@@ -50,4 +49,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
+}
+
+@media screen and (max-width: 380px) {
+    .loginContainer{
+        width: 90vw;
+        min-width: unset;
+    }
+    
 }

@@ -48,7 +48,7 @@ const Newsletter = () => {
                 <motion.img src={mailbox} alt='mailbox watermark' className={classes.watermark} variants={imageVariants}/>
             </section>
             <section className={classes.right}>
-                <h1>Wanna be kept in the loop?</h1>
+                <h1 className={classes.header}>Wanna be kept in the loop?</h1>
                 <h3>Be the first to know about new products and get exclusive, email-only discounts</h3>
                 <Paper className={classes.emailContainer}>
                     <InputBase

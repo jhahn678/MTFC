@@ -59,3 +59,26 @@
     margin: 25vh auto;
     max-width: 80%;
 }
+
+
+@media screen and (max-width: 700px) {
+    .contactPage{
+        justify-content: center;
+    }
+    .emailSvg{
+        top: unset;
+        left: unset;
+        height: 120vh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contactForm{
+        min-width: 90vw;
+        min-height: 80vh;
+    }
+    .envelopeSvg{
+        top: unset;
+        bottom: -50px;
+    }
+}

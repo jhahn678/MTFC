@@ -59,6 +59,7 @@
     }
     .watermark{
         max-width: 100%;
+        opacity: .6;
     }
     .content{
         width: 80%;

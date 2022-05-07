@@ -1,7 +1,6 @@
 .footer{
     display: grid;
-    grid-template-columns: 2fr 3fr 4fr;
-    grid-template-rows: min(225px);
+    grid-template-columns: 3fr 4fr 5fr;
     background-color: var(--background);
 }
 .footerLeft{
@@ -89,4 +88,23 @@
     right: 0;
     height: 50vh;
     transform: rotate(25deg) translate(20px, -30px)
+}
+
+@media screen and (max-width: 700px) {
+    .footer{
+        display: flex;
+        flex-direction: column;
+    }
+    .footerLeft{
+        padding: 2vh 5vw 3vh;
+    }
+    .footerCenter{
+        padding: 2vh 5vw 3vh;
+    }
+    .headerCenter{
+        margin-top: 0;
+    }
+    .footerRight{
+        padding: 0 5vw 5vh;
+    }
 }

@@ -16,6 +16,7 @@
 
 .svg{
     position: absolute;
+    z-index: -1;
     bottom: 5vh;
     width: 90%;
     margin-left: 5%;

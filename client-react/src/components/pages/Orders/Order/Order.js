@@ -31,7 +31,7 @@ const Order = ({ data, dismiss }) => {
                 <div>
                     <h2 className={classes.title}>Order details {dismiss && <IconButton onClick={() => dismiss()}><DeleteIcon/></IconButton>}</h2>
                     <div className={classes.header}>
-                        <p>Status: {data.status}</p>
+                        <p>Status: <b>{data.status}</b></p>
                         <p>ID: {data._id}</p> 
                         <p>{date}</p>
                     </div>

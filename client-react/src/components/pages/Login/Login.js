@@ -1,6 +1,7 @@
 import classes from './Login.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
@@ -42,18 +43,25 @@ const padlockSvgVariants = {
 
 const Login = () => {
 
+    const user = useSelector((state) => state.user.isAuthenticated)
     const navigate = useNavigate()
-
     const location = useLocation()
     const [redirect, setRedirect] = useState('/')
-    if(location?.state?.redirect) setRedirect(location.state.redirect.pathname)
+
+    useEffect(() => {
+        if(location?.state?.redirect) setRedirect(location.state.redirect)
+    },[])
 
     const [viewCartMerge, setViewCartMerge] = useState(false)
-
     const [storedCart, setStoredCart] = useState(null)
     const handleCartMerge = (cart) => {
         setStoredCart(cart)
         setViewCartMerge(true)
+    }
+
+    const handleRedirect = () => {
+        setViewCartMerge(false)
+        navigate(redirect)
     }
 
     return (
@@ -62,12 +70,23 @@ const Login = () => {
                 initial={{ opacity: 0}}
                 animate={{ opacity: 1}}
             >
-                <h1 className={classes.header}>Sign in</h1>
-                <Divider sx={{ orientation: 'horizontal', width: '80%', margin: 'auto', marginBottom: '4vh' }}/>
-                <LoginForm viewCartMerge={handleCartMerge}/>
-                <p className={classes.createAccount}>Dont have an account? 
-                    <Button onClick={() => navigate('/register')}>Register</Button>
-                </p>
+                { user ? 
+                    <h2 className='frjc'>You are currently signed in.</h2> :
+                    <>
+                        <h1 className={classes.header}>Sign in</h1>
+                        <Divider sx={{ orientation: 'horizontal', width: '80%', margin: 'auto', marginBottom: '4vh' }}/>
+                        <LoginForm handleCartMerge={handleCartMerge} onRedirect={handleRedirect}/>
+                        <CartMergeModal 
+                            viewCartMerge={viewCartMerge} 
+                            storedCart={storedCart} 
+                            setStoredCart={setStoredCart}
+                            onDismiss={handleRedirect}
+                        />
+                        <p className={classes.createAccount}>Dont have an account? 
+                            <Button onClick={() => navigate('/register')}>Register</Button>
+                        </p>
+                    </>
+                }
             </motion.div>
             <motion.img src={usersvg} alt='user svg' 
                 className={classes.userSvg}
@@ -80,12 +99,6 @@ const Login = () => {
                 variants={padlockSvgVariants}
                 initial='initial'
                 animate='animate'
-            />
-            <CartMergeModal 
-                viewCartMerge={viewCartMerge} 
-                storedCart={storedCart} 
-                setStoredCart={setStoredCart}
-                onDismiss={() => setViewCartMerge(false)}
             />
         </Page>
     )

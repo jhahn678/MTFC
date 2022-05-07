@@ -29,45 +29,34 @@ const CartMergeModal = ({ viewCartMerge, storedCart, setStoredCart, onDismiss })
     const [ deleteCartMutation ] = useDeleteCartMutation()
     const [ mergeItemsMutation ] = useMergeItemsMutation()
 
-    const [uniqueItems, setUniqueItems] = useState([])
-    useEffect(() => {
-        if (storedCart){
-            //Convert items from stored cart
-            const items = storedCart.items.map(item => {
-                return{
-                    id: item.itemId._id,
-                    itemName: item.itemId.itemName,
-                    unitPrice: item.itemId.unitPrice,
-                    image: item.itemId.image,
-                    quantity: item.quantity,
-                    options: item.options
-                }
-            })
-            //Filter items that arent already in current cart
-            const filteredItems = items.filter(item => cartState.items.find(
-                //Where id is unique OR id is not unique but options are not the same
-                i => i.id !== item.id || (i.id === item.id &&  i.options.join('') !== item.options.join('')))
-            )
-            setUniqueItems(filteredItems)
-        } 
-    },[storedCart])
-
-    const handleRemoveItem = (itemId, options) => {
-        //Remove item provided its itemId and options
-        const filteredItems = uniqueItems.filter(item => item.id !== itemId || (item.id === itemId && item.options.join('') !== options.join('')))
-        setUniqueItems(filteredItems)
-    }
-
+    //Function for dismissing cart merge action.
+    //On user dismiss or if there are no unique items
     const handleDismiss = () => {
-        // If user dismisses cart merge, just delete the cart from the server
         deleteCartMutation(storedCart._id)
         setStoredCart(null)
         onDismiss()
     }
 
+    const [uniqueItems, setUniqueItems] = useState([])
+
+    useEffect(() => {
+        if (storedCart){
+            //Filter items that aren't already in current cart
+            const filteredItems = storedCart.items.filter(item => !cartState.items.find(i => i.variant._id === item.variant._id))
+            //If there are no unique items, dismiss process
+            filteredItems.length === 0 ? handleDismiss() : setUniqueItems(filteredItems)
+        } 
+    },[storedCart])
+
+    const handleRemoveItem = (_id) => {
+        //Remove item provided its _id
+        const filteredItems = uniqueItems.filter(item => item.variant._id !== _id)
+        setUniqueItems(filteredItems)
+    }
+
     const handleSaveItems = async () => {
         // Update cart on server first. If successful, update local cart.
-        const res = await mergeItemsMutation({ cartId: cartState.cartId, items: uniqueItems }).unwrap()
+        const res = await mergeItemsMutation({ cartId: cartState.id, items: uniqueItems }).unwrap()
         if(res.error){
             toast.error('Something went wrong')
         }else{
@@ -90,15 +79,15 @@ const CartMergeModal = ({ viewCartMerge, storedCart, setStoredCart, onDismiss })
                     <AnimatePresence>
                     {
                         uniqueItems.map(item => 
-                            <motion.li key={item.id} className={classes.productListItem} variants={itemVariants}>
-                                <IconButton onClick={() => handleRemoveItem(item.id, item.options)} sx={{ alignSelf: 'center'}}><RemoveCircleOutlineIcon/></IconButton>
-                                <img src={item.image} alt={item.itemName} className={classes.thumbnail}/>
+                            <motion.li key={item.variant._id} className={classes.productListItem} variants={itemVariants}>
+                                <IconButton onClick={() => handleRemoveItem(item.variant._id)} sx={{ alignSelf: 'center'}}><RemoveCircleOutlineIcon/></IconButton>
+                                <img src={item.variant.image} alt={item.variant.product_name} className={classes.thumbnail}/>
                                 <div className={classes.nameGrouping}>
-                                    <h4>{item.itemName}</h4>
+                                    <h4>{item.variant.product_name}</h4>
                                     <span> 
-                                        {item.options.length > 0 && <p>Options: {item.options}</p>}
+                                        <p>{item.variant.variant_type}: {item.variant.display_name}</p>
                                         <p>Quantity: {item.quantity}</p>
-                                        <p>Total: $<b>{item.unitPrice * item.quantity}</b></p>
+                                        <p>Total: $<b>{item.variant.price * item.quantity}</b></p>
                                     </span>
                                 </div>
                             </motion.li>

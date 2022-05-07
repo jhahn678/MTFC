@@ -1,6 +1,7 @@
 .cartMergeModal{
     height: 70vh;
     width: 30vw;
+    min-width: 400px;
     top: 15vh;
     left: 0;
     right: 0;
@@ -51,4 +52,12 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+@media screen and (max-width: 500px) {
+    .cartMergeModal{
+        width: 90vw;
+        min-width: unset;
+        height: 80vh;
+    }
 }

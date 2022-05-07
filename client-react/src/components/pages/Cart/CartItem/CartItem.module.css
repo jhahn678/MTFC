@@ -17,8 +17,12 @@
     flex-direction: column;
     justify-content: flex-end;
 }
+.detailsGroup{
+    display: flex;
+    flex-direction: column;
+}
 .itemName{
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
 }
 .detail{
     margin-left: 1vw;
@@ -32,4 +36,26 @@
     margin-top: 2vh;
     display: flex;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 700px) {
+    .cartItem{
+        flex-direction: column;
+        width: 60%;
+    }
+    .itemDetails{
+        margin: 2vh 3vw 0 0;
+    }
+    .detailsGroup{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cartItem{
+        width: 80%;
+    }
 }

@@ -56,10 +56,13 @@
     justify-content: center;
     transition: .2s all ease;
     position: relative;
+    cursor: pointer;
+    transition: .2s ease all;
 }
 
 .product:hover{
     box-shadow: var(--shadow);
+    transform: scale(1.05);
 }
 .product img{
     height: 100%;

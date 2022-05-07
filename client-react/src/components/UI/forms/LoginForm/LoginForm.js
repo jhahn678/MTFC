@@ -15,7 +15,7 @@ import { toast } from 'react-toastify'
 import { GoogleLogin } from 'react-google-login'
 import GoogleButton from '../../buttons/GoogleButton'
 
-const LoginForm = ({ className, onDismiss, viewCartMerge }) => {
+const LoginForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
 
      //State management
      const dispatch = useDispatch()
@@ -45,7 +45,7 @@ const LoginForm = ({ className, onDismiss, viewCartMerge }) => {
          //If theres a stored cart and a local cart
          if(cart && cartId){
              setCartUserMutation({ userId, cartId })
-             viewCartMerge(cart)
+             handleCartMerge(cart)
          }
          //If theres only a stored cart
          else if(cart){
@@ -58,10 +58,12 @@ const LoginForm = ({ className, onDismiss, viewCartMerge }) => {
              dispatch(setCart({ items: transformedItems, cartId: cart._id }))
              //If server modified stored cart due to items being no longer available
              if(cartModified) toast.info('One or more items previously in your cart are no longer available, and were removed.', { postition: 'top-right', delay: 1000 })
+             onRedirect && onRedirect()
          }
          //If theres only a local cart
          else if(cartId){
              setCartUserMutation({ cartId, userId })
+             onRedirect && onRedirect()
          }
      }
 

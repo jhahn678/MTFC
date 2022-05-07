@@ -29,6 +29,7 @@ code {
   --secondaryTransparent: rgba(244, 229, 190, .6);
   --background: #fafafa;
   --backgroundAlt: #f5f5f5;
+  --lightTransparent: rgba(250, 250, 250, .3);
   --darkTransparent: rgba(0,0,0,.6);
   --text:  #0a3542;
   --shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
@@ -62,6 +63,10 @@ a{
 .frsb{
   display: flex;
   justify-content: space-between;
+}
+.frjc{
+  display: flex;
+  justify-content: center;
 }
 .frcc{
   display: flex;

@@ -26,3 +26,19 @@
     justify-content: center;
     align-items: center;
 }
+
+
+@media screen and (max-width: 950px) {
+    .cartSummary{
+        align-self: center;
+    }
+    .header{
+        margin: 0 auto 2vh;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cartSummary{
+        width: 80vw;
+    }
+}

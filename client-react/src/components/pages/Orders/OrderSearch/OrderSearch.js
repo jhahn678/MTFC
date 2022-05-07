@@ -54,7 +54,7 @@ const OrderSearch = () => {
                     </h1>
                 }
             </OrderGrid>
-            <img src={findordersvg} alt='Magnifying glass svg' className={classes.findOrderSvg}/>
+            <img src={findordersvg} alt='Magnifying glass svg' className={classes.svg}/>
         </div>
     )
 }

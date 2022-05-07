@@ -1,4 +1,5 @@
 import classes from './Shop.module.css'
+import { useState } from 'react'
 import Page from '../../UI/Page/Page'
 import { useGetProductsQuery } from '../../../store/services/endpoints/productEndpoints'
 import Breadcrumbs from './Breadcrumbs/Breadcrumbs'
@@ -11,10 +12,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../../store/reducers/shopSlice'
 import CategoryTree from './CategoryTree/CategoryTree'
 import FeaturedCategories from './FeaturedCategories/FeaturedCategories'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import FilterListIcon from '@mui/icons-material/FilterList';
+import IconButton from '@mui/material/IconButton'
+import FilterListOffIcon from '@mui/icons-material/FilterListOff';
+import Divider from '@mui/material/Divider'
+import CategoryDrawer from './CategoryTree/CategoryDrawer'
 
 let isInitial = true;
 
 const Shop = () => {
+
+  const breakpoint = useMediaQuery('(max-width: 800px)')
+  const [open, setOpen] = useState(false)
 
   //Select shopSlice from redux
   const shopState = useSelector(state => state.shop)
@@ -46,20 +56,33 @@ const Shop = () => {
       <img src='https://storage.googleapis.com/mtfc-products/MTFC-svg/softhackle-pheasant-tail.svg' alt='nymph vector' className={classes.watermark2}/>
       <Breadcrumbs />
       <h1 className={classes.header}>Browse All</h1>
+      
       <FeaturedCategories/>
       <div className='frsb'>
-          {isSuccess && <p style={{ alignSelf: 'center', marginLeft: '3vw', fontSize: '1.2em'}}>{data.count} results</p>}
+          <div className='fr' style={{ marginLeft: '2vw'}}>
+            { breakpoint && <IconButton onClick={() => setOpen(true)}><FilterListIcon/></IconButton>}
+            { isSuccess && <p style={{ alignSelf: 'center', marginLeft: '3vw', fontSize: '1.2em'}}>{data.count} results</p>}
+          </div>
           <FilterBar data={data}/>
       </div>
 
-      <div className='frsb'>
-          <CategoryTree/>
-          <ProductGrid 
-              isSuccess={isSuccess}
-              isLoading={isLoading}
-              isError={isError}
-              data={data}
-          />
+      <div className={breakpoint ? 'frjc': 'frsb'}>
+        { breakpoint ?
+            <CategoryDrawer open={open} anchor='left' onClose={() => setOpen(false)} ModalProps={{
+              keepMounted: true,
+            }}>
+              <IconButton onClick={() => setOpen(false)} sx={{ alignSelf: 'flex-end', padding: '1vh 2vw'}}><FilterListOffIcon fontSize='large'/></IconButton>
+              <Divider/>
+              <CategoryTree styles={{ width: '80%', marginLeft: '2vw' }}/>
+            </CategoryDrawer> :
+            <CategoryTree/>
+        }
+        <ProductGrid 
+            isSuccess={isSuccess}
+            isLoading={isLoading}
+            isError={isError}
+            data={data}
+        />
       </div>
 
       {isSuccess && 

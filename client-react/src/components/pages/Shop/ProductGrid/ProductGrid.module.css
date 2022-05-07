@@ -8,3 +8,17 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: minmax(300px, 30vh);
 }
+
+@media screen and (max-width: 800px) {
+    .productGrid{
+        margin-right: 0;
+        width: 90vw;
+        grid-auto-rows: 200px;
+    }
+}
+@media screen and (max-width: 650px) {
+    .productGrid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+ 

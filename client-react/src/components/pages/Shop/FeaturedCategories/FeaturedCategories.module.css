@@ -9,7 +9,7 @@
 
 .categoryShortcut{
     height: 300px;
-    width: 500px;
+    width: 450px;
     margin-bottom: 4vh;
     position: relative;
     display: flex;
@@ -51,4 +51,16 @@
     filter: brightness(110%);
     transform: scale(1.2);
     box-shadow: var(--shadowHeavy);
+}
+
+@media screen and (max-width: 500px) {
+    .image{
+        width: 90%;
+    }
+    .categoryShortcut{
+        margin-top: 0;
+        margin-bottom: 1vh;
+        width: 100vw;
+        height: 200px;
+    }
 }

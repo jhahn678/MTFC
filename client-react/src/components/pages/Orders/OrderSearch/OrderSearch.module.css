@@ -12,7 +12,7 @@
     align-items: center;
     margin-bottom: 4vh;
 }
-.findOrderSvg{ 
+.svg{ 
     width: 60vw;
     opacity: .3;
     position: absolute;
@@ -55,4 +55,19 @@
 }
 .word:hover{
     color: rgb(189, 58, 58)
+}
+
+@media screen and (max-width: 600px) {
+    .searchContainer{
+        flex-direction: column;
+        margin-bottom: 0vh;
+    }
+    .header{
+        margin-bottom: 2vh;
+    }
+    .svg{
+        opacity: .1;
+        right: 10vw;
+        top: -5vh;
+    }
 }

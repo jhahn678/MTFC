@@ -37,7 +37,7 @@
     font-size: .8em;
 }
 .footer{
-    padding: 5vh 0 5vh 0;
+    padding: 5vh 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -52,4 +52,23 @@
 .footerItemHeader{
     margin-bottom: 2vh;
     font-size: 1.1em;
+}
+
+@media screen and (max-width: 700px) {
+    .header{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .footer{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    .footerItem{
+        border: none;
+        font-size: 1em;
+    }
+    .items{
+        padding-left: 3vw;
+    }
 }

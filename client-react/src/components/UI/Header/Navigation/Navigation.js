@@ -1,9 +1,11 @@
 import classes from './Navigation.module.css'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../../../store/reducers/userSlice'
+import { resetCart } from '../../../../store/reducers/cartSlice'
+import { toast } from 'react-toastify'
 import SettingsIcon from '@mui/icons-material/Settings'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -52,9 +54,16 @@ const Navigation = () => {
     const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
 
     const menuBreakpoint = useMediaQuery('(max-width:900px)')
     const [open, setOpen] = useState(false)
+
+    const handleLogout = () => {
+        dispatch(logout())
+        dispatch(resetCart())
+        toast.success('Successfully signed out', { position: 'bottom-right'})
+    }
 
     return (
             menuBreakpoint ? 
@@ -86,10 +95,18 @@ const Navigation = () => {
                             <ListItemIcon><AlternateEmailIcon fontSize='large' color='primary'/></ListItemIcon>
                             <ListItemText primary='Contact' primaryTypographyProps={{ variant: 'h6' }}/>
                         </ListItemButton>
-                        <Divider sx={{ margin: '4vh 0'}}/>
+                        <Divider sx={{ margin: '3vh 0 2vh'}}/>
                         { user.isAuthenticated ? 
                             <>
-                                <ListItemButton onClick={() => { navigate('/account'); setOpen(false) }}>
+                                <ListItemText primary={`Welcome, ${user.firstName}.`} 
+                                    primaryTypographyProps={{ 
+                                        sx: {
+                                            fontSize: '1em',
+                                            marginLeft: '1em'
+                                        }
+                                    }}
+                                />
+                                <ListItemButton onClick={() => { navigate('/account'); setOpen(false);  }}>
                                     <ListItemIcon><SettingsIcon fontSize='large' color='primary'/></ListItemIcon>
                                     <ListItemText primary='My Account' primaryTypographyProps={{ variant: 'h6' }}/>
                                 </ListItemButton>
@@ -98,16 +115,16 @@ const Navigation = () => {
                                     <ListItemText primary='My Orders' primaryTypographyProps={{ variant: 'h6' }}/>
                                 </ListItemButton>
                                 <Divider sx={{ margin: '4vh 0 2vh'}}/>
-                                <ListItemButton onClick={() => dispatch(logout())}>
+                                <ListItemButton onClick={handleLogout}>
                                     <ListItemText primary='Sign Out' primaryTypographyProps={{ sx: { fontSize: '1em' }}}/>
                                 </ListItemButton>
                             </> :
                             <>
-                                <ListItemButton onClick={() => { navigate('/login'); setOpen(false) }}>
+                                <ListItemButton onClick={() => { navigate('/login', { state: { redirect: location.pathname} }); setOpen(false) }}>
                                     <ListItemIcon><LoginIcon fontSize='large' color='primary'/></ListItemIcon>
                                     <ListItemText primary='Sign In' primaryTypographyProps={{ variant: 'h6' }}/>
                                 </ListItemButton>
-                                <ListItemButton onClick={() => { navigate('/register'); setOpen(false) }}>
+                                <ListItemButton onClick={() => { navigate('/register', { state: { redirect: location.pathname} }); setOpen(false) }}>
                                     <ListItemIcon><PersonAddIcon fontSize='large' color='primary'/></ListItemIcon>
                                     <ListItemText primary='Register' primaryTypographyProps={{ variant: 'h6' }}/>
                                 </ListItemButton>

@@ -22,3 +22,16 @@
     width: 70vw;
     margin-left: 5vw;
 }
+
+@media screen and (max-width: 900px) {
+    .header{
+        margin-bottom: 3vh;
+    }
+    .main{
+        flex-direction: column;
+    }
+    .myOrders{
+        width: 95vw;
+        margin: auto;
+    }
+}

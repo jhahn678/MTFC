@@ -89,7 +89,7 @@ const ProductSlider = ({ data, isLoading, isSuccess, isError, sizing }) => {
                     </h1>
                 }
                 {isSuccess && visibleProducts.length > 0 && visibleProducts.map(prod => 
-                    <div className={classes.product} key={prod._id}>
+                    <div className={classes.product} key={prod._id} onClick={() => navigate(`/product/${prod.slug}`)}>
                         {
                             breakpointMobile ? 
                             <>

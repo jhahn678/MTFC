@@ -59,7 +59,12 @@ const Cart = () => {
           )
         }
         </AnimatePresence>
-        { cartState.items.length >= 1 && <Button onClick={handleEmptyCart} endIcon={<DeleteSweepIcon/>} sx={{ margin: '3vh 2vw' }}>Empty cart</Button>}
+        { cartState.items.length >= 1 && 
+          <Button onClick={handleEmptyCart} 
+            variant='outlined'
+            endIcon={<DeleteSweepIcon/>} 
+            sx={{ margin: '3vh 2vw' }}
+          >Empty cart</Button>}
       </CartList>
       <CartSummary checkoutNow={location.search === '?checkout' ? true : false}/>
     </Page>

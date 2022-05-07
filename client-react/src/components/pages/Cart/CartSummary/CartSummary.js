@@ -9,14 +9,14 @@ import { useStartCheckoutMutation } from '../../../../store/services/endpoints/c
 import { loadStripe } from '@stripe/stripe-js'
 import { toast } from 'react-toastify'
 import { Backdrop } from '../../../UI/modals/Modal'
-
-
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 //Creates stripe promise to be used in stripe session
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE)
 
 const CartSummary = (props) => {
 
+  const breakpoint = useMediaQuery('(max-width: 500px)')
   //Function fetches stripe token from server
   const [ getStripeToken ] = useStartCheckoutMutation()
   const cartState = useSelector((state) => state.cart)
@@ -74,7 +74,7 @@ const CartSummary = (props) => {
         disabled={cartState.total <= 0}
         endIcon={<ShoppingCartCheckoutIcon/>}
         onClick={handleCheckout}
-        sx={{ marginTop: '5vh'}}
+        sx={{ marginTop: '5vh', width: breakpoint ? '100%' : null, height: '45px'}}
       >Checkout Now</Button>
     </motion.div>
     </>
