@@ -64,6 +64,8 @@ const LoginForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
          else if(cartId){
              setCartUserMutation({ cartId, userId })
              onRedirect && onRedirect()
+         }else{
+             onRedirect && onRedirect()
          }
      }
 
