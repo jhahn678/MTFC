@@ -1,4 +1,5 @@
 .accountDetailsForm{
+    min-width: 40vw;
     margin-left: 5vw;
     display: flex;
     flex-direction: column;
@@ -19,7 +20,13 @@
     .accountDetailsForm{
         margin-top: 3vh;
         margin-left: 2vw;
-        max-width: 700px;
+        width: 60vw;
         align-self: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .accountDetailsForm{
+        min-width: 90vw;
     }
 }
