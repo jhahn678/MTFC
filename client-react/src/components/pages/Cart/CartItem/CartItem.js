@@ -31,7 +31,7 @@ const CartItem = ({ variant, quantity }) => {
     const [ quantityValue, setQuantityValue ] = useState(quantity)
 
     const handleQuantityBlur = () => {
-        setQuantityValue(quantityInput)
+        setQuantityValue(parseInt(quantityInput))
     }
 
     useEffect(() => {
