@@ -9,6 +9,16 @@
     grid-auto-rows: minmax(300px, 30vh);
 }
 
+.placeholder{
+    position: relative;
+    z-index: 2;
+    margin-right: 3vw;
+    height: 50vh;
+    width: 70vw;
+    box-sizing: border-box;
+    background-color: thistle;
+}
+
 @media screen and (max-width: 800px) {
     .productGrid{
         margin-right: 0;
