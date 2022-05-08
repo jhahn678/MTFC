@@ -78,7 +78,7 @@ const CustomOrders = () => {
                     whileTap={{ scale: .9 }}
                     viewport={{once: true}}
                 >
-                    <Button variant='outlined' size='large' onClick={() => navigate('/contact')}className={classes.button}>Fly assortments</Button>
+                    <Button variant='outlined' size='large' onClick={() => navigate('/shop/fly-assortments')}className={classes.button}>Fly assortments</Button>
                 </motion.span>
             </div>
             <div className={classes.right}>
