@@ -138,7 +138,7 @@ const RegisterForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => 
 
     //Only used in the google sign up function -- in case user already exists
     const handleUserCart = (userId, cart, cartModified) => {
-        const { cartId } = cartState;
+        const { id: cartId } = cartState;
         //If theres a stored cart and a local cart
         if(cart && cartId){
             setCartUserMutation({ userId, cartId })
@@ -148,12 +148,8 @@ const RegisterForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => 
         else if(cart){
             const transformedItems = cart.items.map(item => {
                 return{
-                    id: item.itemId._id,
-                    itemName: item.itemId.itemName,
-                    unitPrice: item.itemId.unitPrice,
-                    image: item.itemId.image,
-                    quantity: item.quantity,
-                    options: item.options
+                    variant: item.variant,
+                    quantity: item.quantity
                 }
             })
             dispatch(setCart({ items: transformedItems, cartId: cart._id }))
