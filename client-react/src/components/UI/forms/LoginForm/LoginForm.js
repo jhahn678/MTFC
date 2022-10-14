@@ -12,7 +12,6 @@ import { setCart } from '../../../../store/reducers/cartSlice'
 import { useSetCartUserMutation } from '../../../../store/services/endpoints/cartEndpoints'
 import { useLoginMutation, useGoogleLoginMutation } from '../../../../store/services/endpoints/authEndpoints'
 import { toast } from 'react-toastify'
-import { GoogleLogin } from 'react-google-login'
 import GoogleButton from '../../buttons/GoogleButton'
 
 const LoginForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
@@ -86,22 +85,22 @@ const LoginForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
         }
     }
 
-    const handleGoogleLogin = async (res) => {
-        if(res.tokenId){
-            try{
-                const { userId, firstName, token, cart, cartModified } = await googleLoginMutation({token: res.tokenId }).unwrap()
-                dispatch(setUser({ userId, firstName, token }))
-                handleUserCart(userId, cart, cartModified)
-                toast.success('Signed in successfully!')
-                onDismiss && onDismiss()
-            }catch(err){
-                toast.error('Could not authenticate')
-            }
-        }else{
-            console.log(res)
-            toast.error('Cannot connect to Google')
-        }
-    }
+    // const handleGoogleLogin = async (res) => {
+    //     if(res.tokenId){
+    //         try{
+    //             const { userId, firstName, token, cart, cartModified } = await googleLoginMutation({token: res.tokenId }).unwrap()
+    //             dispatch(setUser({ userId, firstName, token }))
+    //             handleUserCart(userId, cart, cartModified)
+    //             toast.success('Signed in successfully!')
+    //             onDismiss && onDismiss()
+    //         }catch(err){
+    //             toast.error('Could not authenticate')
+    //         }
+    //     }else{
+    //         console.log(res)
+    //         toast.error('Cannot connect to Google')
+    //     }
+    // }
 
     return (
         <form className={`${classes.loginForm} ${className}`}>
@@ -129,19 +128,12 @@ const LoginForm = ({ className, onDismiss, onRedirect, handleCartMerge }) => {
                 <p>or</p>
                 <div className={classes.line}></div>
             </div>
-            <GoogleLogin
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                onSuccess={handleGoogleLogin}
-                onFailure={handleGoogleLogin}
-                render={renderProps => 
-                    <GoogleButton
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                    >
-                        Login with Google
-                    </GoogleButton>
-                }
-            />
+            <GoogleButton
+                onClick={() => {}}
+                disabled={true}
+            >
+                Login with Google
+            </GoogleButton>
         </form>
     )
 }
